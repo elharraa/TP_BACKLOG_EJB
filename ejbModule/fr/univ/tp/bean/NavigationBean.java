@@ -51,5 +51,13 @@ public class NavigationBean implements Serializable {
 		return "/secured/welcome.xhtml";
 	}
 	
+	/**
+	 * Redirect to backlog page.
+	 * @return Backlog page name.
+	 */
+	public String redirectToBacklog() {
+		return "/secured/backlog.xhtml";
+	}
+	
 	public NavigationBean(){}
 }

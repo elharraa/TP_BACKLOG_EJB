@@ -1,6 +1,5 @@
 package fr.univ.tp.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
@@ -17,8 +16,6 @@ public class SignUpBean implements Serializable {
 
 	@EJB
 	private UtilisateurDao utilisateurDao;
-	
-	
 	private Utilisateur utilisateur;
 
 
@@ -27,12 +24,6 @@ public class SignUpBean implements Serializable {
 				utilisateur.getLastname(), utilisateur.getEmail());
 	}
 
-	public void signIn(String email) throws IOException {
-		Long id = utilisateurDao.signIn(email);
-		if(id!= null)
-		{
-		}
-	}
 
 	/**
 	 * Constructor

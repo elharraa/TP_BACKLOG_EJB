@@ -20,18 +20,23 @@ public class Agence implements Serializable {
 
     @Column(name="name")
     private String name;
+    
     @Column(name="backlog")
     private HashMap<Long,Entree> backlog;
-
+    
+    @Column(name="userId")
+    private Long userId;
+    
 	public Agence() {
 		super();
 		this.name = "null";
 		this.backlog = new HashMap<Long,Entree>();
 	}
     
-	public Agence(String name) {
+	public Agence(String name, Long userId) {
 		super();
 		this.name = name;
+		this.userId = userId;
 		this.backlog = new HashMap<Long,Entree>();
 	}
 
@@ -65,6 +70,14 @@ public class Agence implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override

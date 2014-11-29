@@ -2,10 +2,14 @@ package fr.univ.tp.bean;
 
 import java.io.Serializable;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+import fr.univ.tp.dao.UtilisateurDao;
+import fr.univ.tp.entity.Utilisateur;
 
 @Named
 @SessionScoped
@@ -13,11 +17,10 @@ public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 7765876811740798583L;
 
-	// Simple user database :)
-	private static final String[] users = { "anna", "kate" };
+	@EJB
+	private UtilisateurDao utilisateurDao;
 
 	private String email;
-
 	private boolean loggedIn;
 
 	// @ManagedProperty(value="#{navigationBean}")
@@ -30,21 +33,21 @@ public class LoginBean implements Serializable {
 	 */
 	public String doLogin() {
 		// Get every user from our sample database :)
-		for (String user : users) {
-			String dbUserMail= user;
-
-			// Successful login
-			if (dbUserMail.equals(email)) {
-				loggedIn = true;
-				System.out.println("Log OK");
-				return navigationBean.redirectToWelcome();
-			}
+		Utilisateur user = utilisateurDao.signIn(email);
+		if (user != null) {
+			loggedIn = true;
+			System.out.println("Log OK");
+			return navigationBean.redirectToWelcome();
 		}
-
-		// Set login ERROR
-		FacesMessage msg = new FacesMessage("Login error!", "ERROR MSG");
-		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		
+		/**
+		 * FIXME NoClassDefFoundError: javax/faces/application/FacesMessage
+		 * 
+		 */
+		//Set login ERROR 
+		// FacesMessage msg = new FacesMessage("Login error!", "ERROR MSG");
+		// msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+		// FacesContext.getCurrentInstance().addMessage(null, msg);
 
 		// To to login page
 		System.out.println("Not OK");

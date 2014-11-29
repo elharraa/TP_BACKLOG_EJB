@@ -42,17 +42,17 @@ public class UtilisateurDao {
 	}
 
 
-	public Long signIn(String email) {
+	public Utilisateur signIn(String email) {
 		@SuppressWarnings("unchecked")
 		List<Utilisateur> result =  em.createQuery(
-		        "SELECT u FROM User u WHERE c.email = :email")
+		        "SELECT u FROM User u WHERE u.email = :email")
 		        .setParameter("email", email)
 		        .getResultList();
 		if (result == null || result.isEmpty()) {
 	        return null;
 	    }
 
-	    return result.get(0).getId();
+	    return result.get(0);
 	}
 	
 
