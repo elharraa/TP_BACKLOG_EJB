@@ -1,4 +1,4 @@
-package fr.univ.tp;
+package fr.univ.tp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package fr.univ.tp;
+package fr.univ.tp.dao;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+
+import fr.univ.tp.entity.Utilisateur;
 
  @Stateless
  @Local
@@ -37,6 +39,20 @@ public class UtilisateurDao {
 
 	public UtilisateurDao() {
 		utilisateur = new Utilisateur();
+	}
+
+
+	public Long signIn(String email) {
+		@SuppressWarnings("unchecked")
+		List<Utilisateur> result =  em.createQuery(
+		        "SELECT u FROM User u WHERE c.email = :email")
+		        .setParameter("email", email)
+		        .getResultList();
+		if (result == null || result.isEmpty()) {
+	        return null;
+	    }
+
+	    return result.get(0).getId();
 	}
 	
 
