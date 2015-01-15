@@ -25,13 +25,26 @@ public class Agency implements Serializable {
 	private int id;
 	@Column
 	private String name;
+	@Column
+	private String creator;
 	
+	public String getCreator() {
+		return creator;
+	}
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
 	public Agency() {
 		super();
 	}
 	public Agency(String name) {
 		super();
 		this.name = name;
+	}
+	public Agency(String name, String creator) {
+		super();
+		this.name = name;
+		this.creator = creator;
 	}
 	public int getId() {
 		return id;

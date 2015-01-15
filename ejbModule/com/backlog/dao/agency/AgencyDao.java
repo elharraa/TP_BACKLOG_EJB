@@ -6,8 +6,10 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import com.backlog.model.Agency;
+
 
 /**
  * Session Bean implementation class AgencyDao
@@ -65,5 +67,11 @@ public class AgencyDao implements AgencyDaoLocal {
     public AgencyDao() {
         // TODO Auto-generated constructor stub
     }
+
+	@Override
+	public List<Agency> getAllAgenciesFromUser(String username) {
+		Query req = em.createQuery("select a from Agency a where creator = '"+username+"'");
+		return req.getResultList();
+	}
 
 }

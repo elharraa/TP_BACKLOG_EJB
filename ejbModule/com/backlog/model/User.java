@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table
@@ -19,6 +22,10 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = SEQUENCE)
 	@Column
 	private int id;
+	
+	@NotNull
+	@Size(min = 1, max = 25)
+	@Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
 	@Column
 	private String name;
 	
@@ -42,6 +49,10 @@ public class User implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + "]";
+	}
 	
-
+	
 }
