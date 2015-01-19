@@ -19,4 +19,6 @@ public interface AgencyDaoLocal {
 
 	Agency getAgency(int id);
 
+	List<Agency> getAllAgenciesFromUser(String username);
+
 }

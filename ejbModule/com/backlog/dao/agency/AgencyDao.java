@@ -68,6 +68,7 @@ public class AgencyDao implements AgencyDaoLocal {
         // TODO Auto-generated constructor stub
     }
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Agency> getAllAgenciesFromUser(String username) {
 		Query req = em.createQuery("select a from Agency a where creator = '"+username+"'");

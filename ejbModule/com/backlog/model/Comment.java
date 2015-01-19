@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table
@@ -27,6 +30,9 @@ public class Comment implements Serializable {
 	private int userId;
 	@Column
 	private int entryId;
+	@NotNull
+	@Size(min = 1, max = 25)
+	@Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
 	@Column
 	private String comment;
 	@Column

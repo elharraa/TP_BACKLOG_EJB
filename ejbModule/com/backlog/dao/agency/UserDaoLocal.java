@@ -15,4 +15,5 @@ public interface UserDaoLocal {
 
 	User getUser(int id);
 
+	User findByName(String userName);
 }
